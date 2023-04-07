@@ -102,10 +102,11 @@ for BEG, END and LEN."
     ;; highlighted, which is what we want. This should be true for
     ;; other packages too, since they almost always do their edit
     ;; AFTER user’s edit.
+    (remove-overlays beg end)
     (if undo-hl--overlay
         (move-overlay undo-hl--overlay beg end)
       (setq undo-hl--overlay (make-overlay beg end)))
-    (overlay-put undo-hl--overlay 'face 'default)
+    ;; (overlay-put undo-hl--overlay 'face 'default)
     (pulse-momentary-highlight-overlay undo-hl--overlay 'undo-hl-insert)))
 
 (defun undo-hl--before-change (beg end)
